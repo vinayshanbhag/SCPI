@@ -1,5 +1,18 @@
 # HP 34401a 
 ## SCPI command summary
+
+### MEASure? Commands
+
+The easiest way to program the multimeter for measurements is by
+using the MEASure? command. However, this command does not offer
+much flexibility. When you execute the command, the multimeter
+presets the best settings for the requested configuration and
+immediately performs the measurement. You cannot change any
+settings (other than function, range, and resolution) before the
+measurement is taken. The results are sent to the output buffer.
+Sending the MEASure? command is the same as sending a CONFigure
+command followed immediately by a READ? command.
+
 ```
 MEASure
 :VOLTage:DC? {<range>|MIN|MAX|DEF},{<resolution>|MIN|MAX|DEF}
@@ -13,7 +26,17 @@ MEASure
 :PERiod? {<range>|MIN|MAX|DEF},{<resolution>|MIN|MAX|DEF}
 :CONTinuity?
 :DIODe?
+```
+### CONFigure? Commands
 
+When you execute the CONFigure command, the multimeter presets the best
+settings for the requested configuration (like the MEASure? command).
+However, the measurement is not automatically started and you can
+change measurement parameters before making measurements. 
+Use the INITiate or READ? command to initiate the measurement.
+(You can use the SENSe:FUNCtion command to change the
+measurement function without using MEASure? or CONFigure.)
+```
 CONFigure
 :VOLTage:DC {<range>|MIN|MAX|DEF},{<resolution>|MIN|MAX|DEF}
 :VOLTage:DC:RATio {<range>|MIN|MAX|DEF},{<resolution>|MIN|MAX|DEF}
@@ -28,8 +51,9 @@ CONFigure
 :DIODe
 
 CONFigure?
-
-
+```
+### Measurement Configuration Commands
+```
 [SENSe:]
 FUNCtion "VOLTage:DC"
 FUNCtion "VOLTage:DC:RATio"
@@ -123,7 +147,9 @@ INPut
 :IMPedance:AUTO?
 
 ROUTe:TERMinals?
-
+```
+### Math Operation Commands
+```
 CALCulate
 :FUNCtion {NULL|DB|DBM|AVERage|LIMit}
 :FUNCtion?
@@ -155,7 +181,9 @@ CALCulate
 :LIMit:UPPer? [MINimum|MAXimum]
 DATA:FEED RDG_STORE, {"CALCulate"|""}
 DATA:FEED?
-
+```
+### Triggering Commands
+```
 INITiate
 
 READ?
@@ -179,7 +207,9 @@ SAMPle
 TRIGger
 :COUNt {<value>|MINimum|MAXimum|INFinite}
 :COUNt? [MINimum|MAXimum]
-
+```
+### System-Related Commands
+```
 FETCh? 
 READ?
 DISPlay {OFF|ON} 
@@ -194,7 +224,9 @@ SYSTem
 :BEEPer
 :BEEPer:STATe {OFF|ON} 
 :BEEPer:STATe?
-
+```
+### Status Reporting Commands
+```
 SYSTem:ERRor?
 SYSTem:VERSion?
 DATA:POINts?
@@ -231,7 +263,9 @@ STATus:PRESet
 *SRE?
 
 *STB?
-
+```
+### Calibration Commands
+```
 CALibration?
 CALibration:COUNt?
 
@@ -245,11 +279,15 @@ CALibration
 :STRing?
 
 CALibration :VALue <value>
-
+```
+### RS-232 Interface Commands
+```
 SYSTem:LOCal
 SYSTem:REMote
 SYSTem:RWLock
-
+```
+### IEEE-488.2 Common Commands
+```
 *CLS
 *ESE <enable value>
 *ESE?
