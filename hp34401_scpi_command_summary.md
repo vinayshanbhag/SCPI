@@ -1,5 +1,5 @@
 # HP 34401a 
-## SCPI command summary
+## SCPI command summary[^1]
 
 ### MEASure? Commands
 
@@ -305,3 +305,6 @@ SYSTem:RWLock
 *TST?
 
 ```
+
+
+[^1]: Source: [HP/Agilent/Keysight 34401a User Guide](https://www.keysight.com/il/en/assets/9018-01063/user-manuals/9018-01063.pdf)
